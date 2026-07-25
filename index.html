@@ -352,10 +352,14 @@
                     display: block;
                     text-align: center;
                 }
-                .temna-foto-profil {
-                    height: 300px;
-                }
                 
+                /* Úprava profilovej fotky pre mobil, aby sa neorezávala a bola celá */
+                .temna-foto-profil {
+                    height: auto !important;
+                    max-height: 450px;
+                    object-fit: contain;
+                }
+
                 /* Fotka v sekcii "Kto som" bude na mobile hore, text pod ňou */
                 #kto-som .pruc-kto-som-grid {
                     display: flex;
