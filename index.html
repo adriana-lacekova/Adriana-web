@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="sk">
+    <head>
+        <meta charset="UTF-8">
+        <title>Adriana Lacekova | Temná Pavučina</title>
+        <style>
+            /* GLOBÁLNE TEMNÉ NASTAVENIA */
+            body {
+                margin: 0;
+                font-family: 'Georgia', serif; 
+                background-color: rgb(7, 7, 7);
+                color: #d1d1d1;
+                overflow-x: hidden;
+            }
+
+            /* NAVIGÁCIA - HLAVNE ČERVENÁ, JEMNÝ MODRÝ PODTEXT */
+            nav {
+                background-color: rgb(0, 0, 0);
+                border-bottom: 2px solid #7a0303;
+                padding: 15px 0;
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                box-sizing: border-box;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.9);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+            nav a {
+                color: #b30000;
+                padding: 10px 20px;
+                text-decoration: none;
+                cursor: pointer;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+            nav a:hover {
+                color: #0088ff;
+                text-shadow: 0 0 12px rgba(0, 136, 255, 0.8);
+            }
+
+            /* ÚVODNÁ OBRAZOVKA - PÔVODNÁ NEDOTKNUTÁ */
+            #uvodny-obsah {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                min-height: 80vh;
+                padding: 40px 20px;
+            }
+
+            .uvodna-foto, .druha-foto, .tretia-foto {
+                filter: grayscale(30%) brightness(0.7);
+                transition: filter 0.5s ease;
+                object-fit: cover;
+                display: block;
+            }
+            
+            .uvodna-foto:hover, .druha-foto:hover, .tretia-foto:hover {
+                filter: grayscale(0%) brightness(1);
+            }
+
+            .uvodna-foto { width: 300px; height: 500px; }
+            .druha-foto { width: 400px; height: 500px; }
+            .tretia-foto { width: 200px; height: 500px; }
+
+            .stl-meno, .stl-priezvisko {
+                position: absolute;
+                font-size: 100px;
+                font-family: 'Horror Font', Impact, serif; 
+                color: #4a0000;
+                font-weight: normal;
+                text-shadow: 3px 3px 0px #000, -1px -1px 0px #ff0000, 1px 1px 4px rgba(0, 102, 255, 0.3);
+                pointer-events: none;
+                mix-blend-mode: difference;
+                z-index: 10;
+            }
+
+            .stl-meno { top: 20%; left: 15%; }
+            .stl-priezvisko { bottom: 20%; right: 15%; }
+
+            /* HLAVNÉ SEKCIE - PÔVODNÉ ČERVENÉ */
+            .stranka {
+                display: none;
+                max-width: 1200px;
+                margin: 40px auto;
+                padding: 40px;
+                box-sizing: border-box;
+                background: rgba(16, 2, 4, 0.86);
+                border: 1px solid #7a0303;
+                box-shadow: inset 0 0 60px rgba(0,0,0,0.95);
+            }
+
+            .stranka h2 {
+                font-size: 45px;
+                color: #b30000;
+                margin-bottom: 30px;
+                letter-spacing: 4px;
+                text-transform: lowercase;
+                position: relative;
+                padding-bottom: 15px;
+            }
+
+           .stranka h2 span {
+                position: relative;
+                display: inline-block;
+                left: 368px;
+                top: -21px;
+            }
+
+            /* UPRAVENÁ ČIARA NA ROZTEKAJÚCI SA ČIERNY SLIZ */
+            .stranka h2::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 8px;
+                background: linear-gradient(180deg, #050505 0%, #000000 60%, rgba(0, 0, 0, 0.8) 100%);
+                border-radius: 0 0 4px 4px;
+                box-shadow: 
+                    0px 3px 8px rgba(0, 0, 0, 0.95),
+                    0px 6px 15px rgba(0, 0, 0, 0.9),
+                    5% 10px 0 3px #000,
+                    18% 22px 0 5px #020202,
+                    32% 14px 0 2px #000,
+                    45% 28px 0 6px #010101,
+                    58% 18px 0 4px #000,
+                    73% 25px 0 5px #020202,
+                    88% 12px 0 3px #000,
+                    95% 20px 0 4px #010101;
+                animation: slizPuls 3s infinite alternate;
+            }
+
+            @keyframes slizPuls {
+                0% { 
+                    filter: brightness(1);
+                    box-shadow: 
+                        0px 3px 8px rgba(0, 0, 0, 0.95),
+                        0px 6px 15px rgba(0, 0, 0, 0.9),
+                        5% 10px 0 3px #000,
+                        18% 22px 0 5px #020202,
+                        32% 14px 0 2px #000,
+                        45% 28px 0 6px #010101,
+                        58% 18px 0 4px #000,
+                        73% 25px 0 5px #020202,
+                        88% 12px 0 3px #000,
+                        95% 20px 0 4px #010101;
+                }
+                100% { 
+                    filter: brightness(1.3);
+                    box-shadow: 
+                        0px 4px 12px rgba(0, 0, 0, 1),
+                        0px 8px 22px rgba(0, 0, 0, 0.95),
+                        5% 14px 0 4px #000,
+                        18% 30px 0 7px #020202,
+                        32% 18px 0 3px #000,
+                        45% 36px 0 8px #010101,
+                        58% 23px 0 5px #000,
+                        73% 32px 0 7px #020202,
+                        88% 16px 0 4px #000,
+                        95% 26px 0 6px #010101;
+                }
+            }
+
+            /* PAVUČINOVÁ MATRICA PRE VŠETKY SEKCIE */
+            .pruc-layout {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            /* ŠPECIÁLNE ROZLOŽENIE PRE "KTO SOM" S FOTKOU */
+            .pruc-kto-som-grid {
+                display: grid;
+                grid-template-columns: 350px 1fr;
+                gap: 30px;
+                align-items: start;
+            }
+
+            .temna-foto-profil-kontajner {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .posviet-si-napis {
+                font-family: 'Georgia', serif;
+                font-size: 14px;
+                color: #ffcccc;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 8px;
+                cursor: pointer;
+                text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                text-align: center;
+                gap: 6px;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            .posviet-si-napis:hover {
+                color: #0088ff;
+                text-shadow: 0 0 12px rgba(0, 136, 255, 0.8);
+            }
+
+            .posviet-si-napis:hover .ziarovka-ikonka {
+                filter: drop-shadow(0 0 10px rgba(0, 136, 255, 1));
+            }
+
+            .ziarovka-ikonka {
+                font-size: 16px;
+                filter: drop-shadow(0 0 6px rgba(255, 200, 0, 0.8));
+                animation: blikanieZiarovky 3s infinite;
+            }
+
+            @keyframes blikanieZiarovky {
+                0%, 100% { opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 220, 0, 0.9)); }
+                50% { opacity: 0.7; filter: drop-shadow(0 0 3px rgba(255, 100, 0, 0.4)); }
+            }
+
+            .temna-foto-profil {
+                width: 100%;
+                height: 450px;
+                object-fit: cover;
+                filter: grayscale(80%) brightness(0.4) contrast(1.3);
+                border: 1px solid #7a0303;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(255, 0, 0, 0.2);
+                transition: filter 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+                cursor: pointer;
+            }
+
+            .temna-foto-profil.rozsvietena {
+                filter: grayscale(0%) brightness(1) contrast(1) !important;
+                box-shadow: 0 0 35px rgba(0, 136, 255, 0.4), inset 0 0 20px rgba(0, 136, 255, 0.2);
+                border-color: #0088ff;
+            }
+
+            .pruc-mriezka {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+                position: relative;
+                margin-top: 10px;
+            }
+
+            .pruc-mriezka-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .pruc-mriezka::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 10%;
+                right: 10%;
+                height: 2px;
+                background: linear-gradient(90deg, #7a0303, #ff0000 60%, #0055ff);
+                box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+                z-index: -1;
+            }
+
+            .pruc-uzol {
+                background: rgba(20, 3, 5, 0.92);
+                border: 1px solid #7a0909;
+                border-top: 2px solid #ff0000;
+                padding: 22px;
+                position: relative;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.9);
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            .pruc-uzol::before {
+                content: '';
+                position: absolute;
+                top: -12px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 12px;
+                background-color: #ff0000;
+                box-shadow: 0 0 6px rgba(0, 102, 255, 0.6);
+            }
+
+            .pruc-uzol:hover {
+                transform: translateY(-6px) scale(1.02);
+                border-color: #ff0000;
+                border-top-color: #0088ff;
+                background: rgba(35, 5, 10, 0.98);
+                box-shadow: 0 0 25px rgba(255, 0, 0, 0.3), 0 0 10px rgba(0, 85, 255, 0.2);
+            }
+
+            .pruc-uzol h3 {
+                color: #ff3333;
+                font-family: 'Georgia', serif;
+                font-size: 20px;
+                margin: 0 0 10px 0;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 1px 1px 3px #000;
+                border-bottom: 1px dashed rgba(255, 0, 0, 0.3);
+                padding-bottom: 8px;
+            }
+
+            .pruc-uzol p {
+                font-family: 'Courier New', monospace;
+                font-size: 15px;
+                line-height: 1.6;
+                color: #cfcfcf;
+                margin: 0;
+            }
+
+            .tlacitko-spat-kontajner {
+                margin-top: 40px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+
+            .tlacitko-spat {
+                padding: 12px 30px;
+                background: linear-gradient(135deg, #7a0303, #4a0000);
+                color: #fff;
+                border: 2px solid #000;
+                cursor: pointer;
+                font-family: 'Georgia', serif;
+                font-size: 20px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                box-shadow: 5px 5px 0px #000;
+                transition: all 0.2s ease;
+            }
+            .tlacitko-spat:hover {
+                background: linear-gradient(135deg, #ff0000, #0055ff);
+                box-shadow: 2px 2px 0px #000;
+                transform: translate(3px, 3px);
+                text-shadow: 0 0 8px rgba(255,255,255,0.8);
+            }
+
+            @media (max-width: 1000px) {
+                .pruc-kto-som-grid {
+                    grid-template-columns: 1fr;
+                }
+                .temna-foto-profil {
+                    height: 350px;
+                }
+                .pruc-mriezka, .pruc-mriezka-3 {
+                    grid-template-columns: 1fr;
+                }
+                .pruc-mriezka::before {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 900px) {
+                #uvodny-obsah {
+                    grid-template-columns: 1fr;
+                }
+                .uvodna-foto, .druha-foto, .tretia-foto {
+                    width: 100%;
+                    max-width: 400px;
+                    height: auto;
+                    margin: 0 auto;
+                }
+                .stl-meno, .stl-priezvisko { font-size: 50px; }
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <a onclick="zobrazStranku('kto-som')">Kto som</a>
+            <a onclick="zobrazStranku('co-mam-za-sebou')">Čo mám za sebou</a>
+            <a onclick="zobrazStranku('co-ma-brzdi')">Čo ma brzdí</a>
+            <a onclick="zobrazStranku('kam-smerujem')">Kam smerujem</a>
+            <a onclick="zobrazStranku('kontakt')">Kontakt</a>
+        </nav>
+
+        <div id="uvodny-obsah">
+            <img src="Adri.jpg" alt="Obr 1" class="uvodna-foto">
+            <img src="1.jpg" alt="Obr 2" class="druha-foto">
+            <img src="4.jpg" alt="Obr 3" class="tretia-foto">
+            
+            <div class="stl-meno">Adriana</div>
+            <div class="stl-priezvisko">Lacekova</div>
+        </div>
+
+        <!-- KTO SOM -->
+        <div id="kto-som" class="stranka">
+            <h2><span>Moje zázemie</span></h2>
+            <div class="pruc-layout">
+                <div class="pruc-kto-som-grid">
+                    <div class="temna-foto-profil-kontajner">
+                        <div class="posviet-si-napis" onclick="rozsvietFotku()">
+                            <span class="ziarovka-ikonka">💡</span> Kliknutím si na mňa posvieť
+                        </div>
+                        <img src="Adriana.jpg" alt="Adriana Lacekova" class="temna-foto-profil" id="profilova-foto" onclick="rozsvietFotku()">
+                    </div>
+                    <div class="pruc-mriezka pruc-mriezka-3" style="margin-top: 0;">
+                        <div class="pruc-uzol">
+                            <h3>IT technológie</h3>
+                            <p>Návrh pokročilého kódu, tvorba systémov a hlboké porozumenie digitálnej logike.</p>
+                        </div>
+                        <div class="pruc-uzol">
+                            <h3>Vývojárske nástroje</h3>
+                            <p>Využitie moderných technologických prostredí na budovanie vysoko odolných riešení.</p>
+                        </div>
+                        <div class="pruc-uzol">
+                            <h3>Autorstvo</h3>
+                            <p>Precízna, konštruktívna a štruktúrovaná tvorba odborných textov či dokumentácie.</p>
+                        </div>
+                        <div class="pruc-uzol">
+                            <h3>Verejná správa</h3>
+                            <p>Orientácia v spletitých procesoch, legislatíve a nastavení systémových pravidiel.</p>
+                        </div>
+                        <div class="pruc-uzol">
+                            <h3>Fyzika</h3>
+                            <p>Analytické štúdium optiky, materiálov a reálnych mechanizmov okolitého sveta.</p>
+                        </div>
+                        <div class="pruc-uzol">
+                            <h3>Trénerstvo</h3>
+                            <p>Budovanie fyzickej disciplíny, vytrvalosti a odstraňovanie slabostí.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tlacitko-spat-kontajner">
+                <button class="tlacitko-spat" onclick="zobrazUvod()">Späť</button>
+            </div>
+        </div>
+
+        <!-- ČO MÁM ZA SEBOU -->
+        <div id="co-mam-za-sebou" class="stranka">
+            <h2><span>čo mám za sebou</span></h2>
+            <div class="pruc-layout">
+                <div class="pruc-mriezka">
+                    <div class="pruc-uzol">
+                        <h3>Najvyšší správny súd SR</h3>
+                        <p>Návrh a úspešná prezentacja projektu aplikujúceho technologické inovácie v prostredí štátnej justície (NSS SR).</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Aplikácia „Osobný tréner“</h3>
+                        <p>Samostatný vývoj, kompletná architektúra a správa funkčnej tréningovej aplikácie.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Klientske webové projekty</h3>
+                        <p>Návrh a úspešné nasadenie digitálnych riešení pre reálnych klientov.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Športová prax</h3>
+                        <p>skúsenosti s vedením ľudí a budovaním fyzickej pripravenosti.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tlacitko-spat-kontajner">
+                <button class="tlacitko-spat" onclick="zobrazUvod()">Späť</button>
+            </div>
+        </div>
+
+        <!-- ČO MA BRZDI -->
+        <div id="co-ma-brzdi" class="stranka">
+            <h2><span>čo ma brzdí</span></h2>
+            <div class="pruc-layout">
+                <div class="pruc-mriezka">
+                    <div class="pruc-uzol">
+                        <h3>Časová tieseň</h3>
+                        <p>Limitovaný čas pri paralelnom riadení a vývoji viacerých náročných projektov naraz.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Kompromisy pravidiel</h3>
+                        <p>Hľadanie ideálnej rovnováhy medzi striktnou systémovou logikou a potrebnou flexibilitou.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Zameranie na detail</h3>
+                        <p>Orientácia na precíznosť a bezchybnosť riešení, ktorá ma občas vedie k zbytočnému prehlbovaniu detailov.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Široké spektrum</h3>
+                        <p>Výzva udržať absolútnu efektivitu a time-management pri obrovskom množstve záujmov.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tlacitko-spat-kontajner">
+                <button class="tlacitko-spat" onclick="zobrazUvod()">Späť</button>
+            </div>
+        </div>
+
+        <!-- KAM SMERUJEM -->
+        <div id="kam-smerujem" class="stranka">
+            <h2><span>kam smerujem</span></h2>
+            <div class="pruc-layout">
+                <div class="pruc-mriezka">
+                    <div class="pruc-uzol">
+                        <h3>Inštitucionálne systémy</h3>
+                        <p>Tvorba robustných, bezpečných a vysoko efektívnych riešení pre štátnu správu.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Softvérový vývoj</h3>
+                        <p>Pokročilá automatizácia procesov a konštantné vylepšovanie digitálnej architektúry.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Multidisciplinárne prepojenie</h3>
+                        <p>Synergia moderných technológií, práva, analytiky a praktického dopadu.</p>
+                    </div>
+                    <div class="pruc-uzol">
+                        <h3>Inžiniersky a profesijný rozvoj</h3>
+                        <p>napredovanie v oblasti inžinierskeho myslenia, programovania a analýzy dát, s cieľom prinášať efektívne a inovatívne tech-riešenia.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tlacitko-spat-kontajner">
+                <button class="tlacitko-spat" onclick="zobrazUvod()">Späť</button>
+            </div>
+        </div>
+
+        <!-- KONTAKT -->
+        <div id="kontakt" class="stranka">
+            <h2><span>Kontakt</span></h2>
+            <div class="pruc-layout">
+                <div class="pruc-kto-som-grid">
+                    <div class="temna-foto-profil-kontajner">
+                        <div class="posviet-si-napis" onclick="rozsvietPeniaze()">
+                            <span class="ziarovka-ikonka">💡</span> Kliknutím odhaľ hodnotu
+                        </div>
+                        <img src="peniaze.jpg" alt="Peniaze" class="temna-foto-profil" id="peniaze-foto" onclick="rozsvietPeniaze()">
+                    </div>
+                    <div class="pruc-mriezka" style="margin-top: 0; grid-template-columns: 1fr;">
+                        <div class="pruc-uzol">
+                            <h3>Spoj sa so mnou</h3>
+                            <p>Máš záujem o spoluprácu, projekt alebo chceš prediskutovať možnosti inovácií? Ozvi sa mi priamo:</p>
+                            <p style="margin-top: 15px;"><strong style="color: #0088ff;">aduskalacekova@gmail.com </strong></p>
+                        </div>
+                        <div class="pruc-uzol">
+                            <h3>Profily</h3>
+                            <p>Sleduj moju profesijnú cestu a prepojenia online:</p>
+                            <p style="margin-top: 15px;">
+                                <a href="https://www.linkedin.com/in/adriana-lacekov%C3%A1-5981703a9/?skipRedirect=true" target="_blank" style="color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 10px;">LinkedIn profil &rarr;</a><br>
+                                <a href="https://www.facebook.com/Adriana.Lacekovaa/" target="_blank" style="color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block;">Facebook profil &rarr;</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tlacitko-spat-kontajner">
+                <button class="tlacitko-spat" onclick="zobrazUvod()">Späť</button>
+            </div>
+        </div>
+
+        <script>
+            function zobrazStranku(id) {
+                document.getElementById('uvodny-obsah').style.display = 'none';
+                let stranky = document.querySelectorAll('.stranka');
+                stranky.forEach(s => s.style.display = 'none');
+                
+                let vybrana = document.getElementById(id);
+                if (vybrana) {
+                    vybrana.style.display = 'block';
+                }
+                window.scrollTo(0, 0);
+            }
+
+            function zobrazUvod() {
+                let stranky = document.querySelectorAll('.stranka');
+                stranky.forEach(s => s.style.display = 'none');
+                document.getElementById('uvodny-obsah').style.display = 'grid';
+                window.scrollTo(0, 0);
+            }
+
+            function rozsvietFotku() {
+                let foto = document.getElementById('profilova-foto');
+                let nadpis = document.querySelector('#kto-som .posviet-si-napis');
+                
+                foto.classList.toggle('rozsvietena');
+                
+                if (foto.classList.contains('rozsvietena')) {
+                    nadpis.innerHTML = '<span class="ziarovka-ikonka">💡</span> Kliknutím svetlo zhasne';
+                } else {
+                    nadpis.innerHTML = '<span class="ziarovka-ikonka">💡</span> Kliknutím si na mňa posvieť';
+                }
+            }
+
+            function rozsvietPeniaze() {
+                let foto = document.getElementById('peniaze-foto');
+                let nadpis = document.querySelector('#kontakt .posviet-si-napis');
+                
+                foto.classList.toggle('rozsvietena');
+                
+                if (foto.classList.contains('rozsvietena')) {
+                    nadpis.innerHTML = '<span class="ziarovka-ikonka">💡</span> Kliknutím svetlo zhasne';
+                } else {
+                    nadpis.innerHTML = '<span class="ziarovka-ikonka">💡</span> Kliknutím odhaľ hodnotu';
+                }
+            }
+        </script>
+    </body>
+</html>
