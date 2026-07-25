@@ -2,6 +2,7 @@
 <html lang="sk">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Adriana Lacekova | Temná Pavučina</title>
         <style>
             /* GLOBÁLNE TEMNÉ NASTAVENIA */
@@ -17,10 +18,11 @@
             nav {
                 background-color: rgb(0, 0, 0);
                 border-bottom: 2px solid #7a0303;
-                padding: 15px 0;
+                padding: 12px 10px;
                 display: flex;
                 justify-content: center;
-                gap: 20px;
+                flex-wrap: wrap;
+                gap: 10px 20px;
                 box-sizing: border-box;
                 box-shadow: 0 5px 20px rgba(0,0,0,0.9);
                 position: sticky;
@@ -29,12 +31,13 @@
             }
             nav a {
                 color: #b30000;
-                padding: 10px 20px;
+                padding: 8px 12px;
                 text-decoration: none;
                 cursor: pointer;
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 2px;
+                font-size: 14px;
                 transition: color 0.3s ease, text-shadow 0.3s ease;
             }
             nav a:hover {
@@ -42,7 +45,7 @@
                 text-shadow: 0 0 12px rgba(0, 136, 255, 0.8);
             }
 
-            /* ÚVODNÁ OBRAZOVKA - PÔVODNÁ NEDOTKNUTÁ */
+            /* ÚVODNÁ OBRAZOVKA */
             #uvodny-obsah {
                 display: grid;
                 grid-template-columns: repeat(3, auto);
@@ -83,7 +86,7 @@
             .stl-meno { top: 20%; left: 15%; }
             .stl-priezvisko { bottom: 20%; right: 15%; }
 
-            /* HLAVNÉ SEKCIE - PÔVODNÉ ČERVENÉ */
+            /* HLAVNÉ SEKCIE */
             .stranka {
                 display: none;
                 max-width: 1200px;
@@ -112,7 +115,7 @@
                 top: -21px;
             }
 
-            /* UPRAVENÁ ČIARA NA ROZTEKAJÚCI SA ČIERNY SLIZ */
+            /* ROZTEKAJÚCI SA ČIERNY SLIZ */
             .stranka h2::after {
                 content: '';
                 position: absolute;
@@ -351,6 +354,7 @@
                 text-shadow: 0 0 8px rgba(255,255,255,0.8);
             }
 
+            /* MOBILNÁ RESPONSIVITA */
             @media (max-width: 1000px) {
                 .pruc-kto-som-grid {
                     grid-template-columns: 1fr;
@@ -369,14 +373,46 @@
             @media (max-width: 900px) {
                 #uvodny-obsah {
                     grid-template-columns: 1fr;
+                    padding: 20px 10px;
+                    min-height: auto;
                 }
                 .uvodna-foto, .druha-foto, .tretia-foto {
                     width: 100%;
-                    max-width: 400px;
-                    height: auto;
-                    margin: 0 auto;
+                    max-width: 320px;
+                    height: 420px;
+                    margin: 10px auto;
                 }
-                .stl-meno, .stl-priezvisko { font-size: 50px; }
+                .stl-meno, .stl-priezvisko { 
+                    font-size: 42px; 
+                }
+                .stl-meno { top: 10%; left: 10%; }
+                .stl-priezvisko { bottom: 10%; right: 10%; }
+
+                .stranka {
+                    margin: 15px 10px;
+                    padding: 20px 15px;
+                }
+
+                .stranka h2 {
+                    font-size: 28px;
+                    text-align: center;
+                    padding-bottom: 25px;
+                }
+
+                .stranka h2 span {
+                    left: 0;
+                    top: 0;
+                    display: block;
+                    text-align: center;
+                }
+
+                .temna-foto-profil-kontajner {
+                    margin-top: 0;
+                }
+
+                .temna-foto-profil {
+                    height: 300px;
+                }
             }
         </style>
     </head>
@@ -544,7 +580,7 @@
                     <div class="pruc-mriezka" style="margin-top: 0; grid-template-columns: 1fr;">
                         <div class="pruc-uzol">
                             <h3>Spoj sa so mnou</h3>
-                            <p>Máš záujem o spoluprácu, projekt alebo chceš prediskutovať možnosti inovácií? Ozvi sa mi priamo:</p>
+                            <p>Máš záujem o spolupráci, projekt alebo chceš prediskutovať možnosti inovácií? Ozvi sa mi priamo:</p>
                             <p style="margin-top: 15px;"><strong style="color: #0088ff;">aduskalacekova@gmail.com </strong></p>
                         </div>
                         <div class="pruc-uzol">
