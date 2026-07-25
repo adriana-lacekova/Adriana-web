@@ -392,7 +392,6 @@
                     font-size: 42px; 
                 }
                 
-                /* UPRAVENÉ POZÍCIE NÁPISOV NA MOBILE: Adriana vyššie, Lacekova nižšie */
                 .stl-meno { top: 4%; left: 8%; }
                 .stl-priezvisko { bottom: 4% !important; right: 8%; }
 
@@ -420,6 +419,12 @@
 
                 .temna-foto-profil {
                     height: 300px;
+                }
+
+                /* PREHODENIE PORADIA V SEKCII "KTO SOM" LEN PRE MOBIL: Najprv fotka, potom nadpis "Moje zázemie" */
+                #kto-som .pruc-kto-som-grid {
+                    display: flex;
+                    flex-direction: column-reverse;
                 }
             }
         </style>
@@ -494,7 +499,7 @@
                 <div class="pruc-mriezka">
                     <div class="pruc-uzol">
                         <h3>Najvyšší správny súd SR</h3>
-                        <p>Návrh a úspešná prezentácia projektu aplikujúceho technologické inovácie v prostredí štátnej justície (NSS SR).</p>
+                        <p>Návrh a úspešná prezentacja projektu aplikujúceho technologické inovácie v prostredí štátnej justície (NSS SR).</p>
                     </div>
                     <div class="pruc-uzol">
                         <h3>Aplikácia „Osobný tréner“</h3>
