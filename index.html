@@ -108,7 +108,7 @@
                 padding-bottom: 15px;
             }
 
-           .stranka h2 span {
+            .stranka h2 span {
                 position: relative;
                 display: inline-block;
                 left: 368px;
@@ -142,31 +142,9 @@
             @keyframes slizPuls {
                 0% { 
                     filter: brightness(1);
-                    box-shadow: 
-                        0px 3px 8px rgba(0, 0, 0, 0.95),
-                        0px 6px 15px rgba(0, 0, 0, 0.9),
-                        5% 10px 0 3px #000,
-                        18% 22px 0 5px #020202,
-                        32% 14px 0 2px #000,
-                        45% 28px 0 6px #010101,
-                        58% 18px 0 4px #000,
-                        73% 25px 0 5px #020202,
-                        88% 12px 0 3px #000,
-                        95% 20px 0 4px #010101;
                 }
                 100% { 
                     filter: brightness(1.3);
-                    box-shadow: 
-                        0px 4px 12px rgba(0, 0, 0, 1),
-                        0px 8px 22px rgba(0, 0, 0, 0.95),
-                        5% 14px 0 4px #000,
-                        18% 30px 0 7px #020202,
-                        32% 18px 0 3px #000,
-                        45% 36px 0 8px #010101,
-                        58% 23px 0 5px #000,
-                        73% 32px 0 7px #020202,
-                        88% 16px 0 4px #000,
-                        95% 26px 0 6px #010101;
                 }
             }
 
@@ -179,7 +157,6 @@
                 gap: 30px;
             }
 
-            /* ŠPECIÁLNE ROZLOŽENIE PRE "KTO SOM" S FOTKOU */
             .pruc-kto-som-grid {
                 display: grid;
                 grid-template-columns: 350px 1fr;
@@ -216,10 +193,6 @@
             .posviet-si-napis:hover {
                 color: #0088ff;
                 text-shadow: 0 0 12px rgba(0, 136, 255, 0.8);
-            }
-
-            .posviet-si-napis:hover .ziarovka-ikonka {
-                filter: drop-shadow(0 0 10px rgba(0, 136, 255, 1));
             }
 
             .ziarovka-ikonka {
@@ -262,18 +235,6 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
-            .pruc-mriezka::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 10%;
-                right: 10%;
-                height: 2px;
-                background: linear-gradient(90deg, #7a0303, #ff0000 60%, #0055ff);
-                box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-                z-index: -1;
-            }
-
             .pruc-uzol {
                 background: rgba(20, 3, 5, 0.92);
                 border: 1px solid #7a0909;
@@ -285,18 +246,6 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
-            }
-
-            .pruc-uzol::before {
-                content: '';
-                position: absolute;
-                top: -12px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 2px;
-                height: 12px;
-                background-color: #ff0000;
-                box-shadow: 0 0 6px rgba(0, 102, 255, 0.6);
             }
 
             .pruc-uzol:hover {
@@ -365,9 +314,6 @@
                 .pruc-mriezka, .pruc-mriezka-3 {
                     grid-template-columns: 1fr;
                 }
-                .pruc-mriezka::before {
-                    display: none;
-                }
             }
 
             @media (max-width: 900px) {
@@ -376,12 +322,9 @@
                     padding: 20px 10px;
                     min-height: auto;
                 }
-                
-                /* Úplne skryje druhý (stredný) obrázok na mobile */
                 .druha-foto {
                     display: none;
                 }
-
                 .uvodna-foto, .tretia-foto {
                     width: 100%;
                     max-width: 320px;
@@ -391,7 +334,6 @@
                 .stl-meno, .stl-priezvisko { 
                     font-size: 42px; 
                 }
-                
                 .stl-meno { top: 4%; left: 8%; }
                 .stl-priezvisko { bottom: 4% !important; right: 8%; }
 
@@ -399,32 +341,25 @@
                     margin: 15px 10px;
                     padding: 20px 15px;
                 }
-
                 .stranka h2 {
                     font-size: 28px;
                     text-align: center;
                     padding-bottom: 25px;
                 }
-
                 .stranka h2 span {
                     left: 0;
                     top: 0;
                     display: block;
                     text-align: center;
                 }
-
-                .temna-foto-profil-kontajner {
-                    margin-top: 0;
-                }
-
                 .temna-foto-profil {
                     height: 300px;
                 }
-
-                /* PREHODENIE PORADIA V SEKCII "KTO SOM" LEN PRE MOBIL: Najprv fotka, potom nadpis "Moje zázemie" */
+                
+                /* Fotka v sekcii "Kto som" bude na mobile hore, text pod ňou */
                 #kto-som .pruc-kto-som-grid {
                     display: flex;
-                    flex-direction: column-reverse;
+                    flex-direction: column;
                 }
             }
         </style>
@@ -511,7 +446,7 @@
                     </div>
                     <div class="pruc-uzol">
                         <h3>Športová prax</h3>
-                        <p>skúsenosti s vedením ľudí a budovaním fyzickej pripravenosti.</p>
+                        <p>Skúsenosti s vedením ľudí a budovaním fyzickej pripravenosti.</p>
                     </div>
                 </div>
             </div>
@@ -569,7 +504,7 @@
                     </div>
                     <div class="pruc-uzol">
                         <h3>Inžiniersky a profesijný rozvoj</h3>
-                        <p>napredovanie v oblasti inžinierskeho myslenia, programovania a analýzy dát, s cieľom prinášať efektívne a inovatívne tech-riešenia.</p>
+                        <p>Napredovanie v oblasti inžinierskeho myslenia, programovania a analýzy dát, s cieľom prinášať efektívne a inovatívne tech-riešenia.</p>
                     </div>
                 </div>
             </div>
@@ -594,15 +529,14 @@
                         <div class="pruc-uzol">
                             <h3>Spoj sa so mnou</h3>
                             <p>Zaujal ťa môj web, chceš prediskutovať nápady alebo sa len prepojiť? Pokojne mi napíš:</p>
-                            <!-- OPRAVENÝ ODKAZ NA PRIAMY FORMULÁR NA PÍSANIE SPRÁVY V GMAIL-E -->
-                            <p style="margin-top: 15px;"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=aduskalacekova@gmail.com" target="_blank" style="color: #0088ff; text-decoration: none; font-weight: bold; pointer-events: auto; cursor: pointer;">aduskalacekova@gmail.com</a></p>
+                            <p style="margin-top: 15px;"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=aduskalacekova@gmail.com" target="_blank" style="color: #0088ff; text-decoration: none; font-weight: bold;">aduskalacekova@gmail.com</a></p>
                         </div>
                         <div class="pruc-uzol">
                             <h3>Profily</h3>
                             <p>Sleduj moju cestu a prepojenia online:</p>
                             <p style="margin-top: 15px;">
-                                <a href="https://www.linkedin.com/in/adriana-lacekov%C3%A1-5981703a9/?skipRedirect=true" target="_blank" style="color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 10px; pointer-events: auto; cursor: pointer;">LinkedIn profil &rarr;</a><br>
-                                <a href="https://www.facebook.com/Adriana.Lacekovaa/" target="_blank" style="color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block; pointer-events: auto; cursor: pointer;">Facebook profil &rarr;</a>
+                                <a href="https://www.linkedin.com/in/adriana-lacekov%C3%A1-5981703a9/?skipRedirect=true" target="_blank" style="color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 10px;">LinkedIn profil &rarr;</a><br>
+                                <a href="https://www.facebook.com/Adriana.Lacekovaa/" target="_blank" style="color: #ff3333; text-decoration: none; font-weight: bold; display: inline-block;">Facebook profil &rarr;</a>
                             </p>
                         </div>
                     </div>
