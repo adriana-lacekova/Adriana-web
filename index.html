@@ -376,7 +376,13 @@
                     padding: 20px 10px;
                     min-height: auto;
                 }
-                .uvodna-foto, .druha-foto, .tretia-foto {
+                
+                /* Úplne skryje druhý (stredný) obrázok na mobile */
+                .druha-foto {
+                    display: none;
+                }
+
+                .uvodna-foto, .tretia-foto {
                     width: 100%;
                     max-width: 320px;
                     height: 420px;
